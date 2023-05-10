@@ -6,12 +6,23 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu
 
 Include: sudo 
 
-%files
-	run_xmds /usr/bin
-
 %post
 	sudo apt update
 	sudo apt install -y software-properties-common
 	sudo add-apt-repository universe
 	sudo apt update
 	sudo apt install -y xmds2
+
+	mkdir /home/git
+	cd /home/git
+	
+	sudo apt install -y git
+	git clone https://github.com/alamda/xmds2-workflow.git
+
+	cd xmds2-workflow
+	sudo cp xmds2-workflow/apptainer/{run_xmds,gen_input,plot} /usr/bin
+
+	sudo apt install -y python3-pip
+
+	python3 -m ensurepip
+	pip install numpy matplotlib colorspacious h5py

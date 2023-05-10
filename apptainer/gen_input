@@ -1,0 +1,3 @@
+#!/bin/sh
+
+python3 /home/git/xmds2-workflow/plotting/gen_input.py

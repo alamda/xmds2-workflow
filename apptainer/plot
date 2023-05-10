@@ -1,0 +1,3 @@
+#!/bin/sh
+
+python3 /home/git/xmds2-workflow/plotting/actin_with_plotting_side_by_side.py
