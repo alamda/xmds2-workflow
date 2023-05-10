@@ -1,0 +1,9 @@
+#!/bin/sh
+
+xmds_file=$1
+
+exe_file=${xmds_file%%.xmds}
+
+xmds2 $xmds_file
+
+$(pwd)/$exe_file

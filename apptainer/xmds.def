@@ -1,0 +1,17 @@
+Bootstrap: debootstrap
+
+OSVersion: jammy
+
+MirrorURL: http://us.archive.ubuntu.com/ubuntu
+
+Include: sudo 
+
+%files
+	run_xmds /usr/bin
+
+%post
+	sudo apt update
+	sudo apt install -y software-properties-common
+	sudo add-apt-repository universe
+	sudo apt update
+	sudo apt install -y xmds2
