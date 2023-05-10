@@ -19,10 +19,9 @@ Include: sudo
 	sudo apt install -y git
 	git clone https://github.com/alamda/xmds2-workflow.git
 
-	cd xmds2-workflow
-	sudo cp xmds2-workflow/apptainer/{run_xmds,gen_input,plot} /usr/bin
+	cd xmds2-workflow/apptainer
+	sudo cp run_xmds gen_input plot /usr/bin
 
 	sudo apt install -y python3-pip
 
-	python3 -m ensurepip
-	pip install numpy matplotlib colorspacious h5py
+	python3 -m pip install numpy matplotlib colorspacious h5py
