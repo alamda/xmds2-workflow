@@ -1,12 +1,8 @@
-#!/bin/bash
+#!/bin/sh
 
 #SBATCH --account=pi-svaikunt
-#SBATCH --time=1-12:00:00
-#SBATCH --error=%j.err
-#SBATCH --output=%j.out
 #SBATCH --partition=svaikunt
+#SBATCH --error="%j.err"
+#SBATCH --output="%j.out"
 
-module load singularity
-
-singularity exec --pwd $PWD --bind $PWD /project/svaikunt/singularity_containers/xmds_sandbox.sif xmds2actin.xmds
-
+singularity exec --contain --bind $HOME/.xmds --bind $PWD --pwd $PWD /project/svaikunt/singularity_containers/xmds_sandbox.sif run_xmds actin.xmds
