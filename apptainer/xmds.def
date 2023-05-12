@@ -22,6 +22,6 @@ Include: sudo
 	cd xmds2-workflow/apptainer
 	sudo cp run_xmds gen_input plot plot_movie /usr/bin
 
-	sudo apt install -y python3-pip ffmpeg
+	sudo apt install -y python3-pip ffmpeg vlc
 
 	python3 -m pip install numpy matplotlib colorspacious h5py
