@@ -238,5 +238,5 @@ class Figure():
 
       print("movie saved")
     
-myFig = Figure(snapshots=True)
+myFig = Figure(video=True,snapshots=True)
 del(myFig)
