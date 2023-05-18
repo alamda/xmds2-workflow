@@ -44,8 +44,8 @@ class Figure():
     self.x = firstElementOrNone(_["array"] for _ in xsilFile.xsilObjects[0].independentVariables if _["name"] == "x")
     self.y = firstElementOrNone(_["array"] for _ in xsilFile.xsilObjects[0].independentVariables if _["name"] == "y")
     self.c = firstElementOrNone(_["array"] for _ in xsilFile.xsilObjects[0].dependentVariables if _["name"] == "CR")
-    self.nx = firstElementOrNone(_["array"] for _ in xsilFile.xsilObjects[0].dependentVariables if _["name"] == "N1R")
-    self.ny = firstElementOrNone(_["array"] for _ in xsilFile.xsilObjects[0].dependentVariables if _["name"] == "N2R")
+    self.nx = firstElementOrNone(_["array"] for _ in xsilFile.xsilObjects[0].dependentVariables if _["name"] == "N1R")[:,::-1,:]
+    self.ny = firstElementOrNone(_["array"] for _ in xsilFile.xsilObjects[0].dependentVariables if _["name"] == "N2R")[:,::-1,:]
 
   def set_params(self):
     self.fig_size_w = 16
@@ -127,8 +127,8 @@ class Figure():
     return (fig, ax)
 
   def plot_data(self, idx, fname_str):
-    self.nxs=self.nx[idx, ::-self.skip, ::self.skip]
-    self.nys=self.ny[idx, ::-self.skip, ::self.skip]
+    self.nxs=self.nx[idx, ::self.skip, ::self.skip]
+    self.nys=self.ny[idx, ::self.skip, ::self.skip]
 
     self.get_cmap_bounds(idx)
 
@@ -193,8 +193,8 @@ class Figure():
     def updatefig(j):
       self.fig.suptitle(f't = {self.t[j]:.2f}\nL = {self.L:.1f}, dL = {self.dL:.1f}')
 
-      U=self.nx[j,::-self.skip,::self.skip]
-      V=self.ny[j,::-self.skip,::self.skip]
+      U=self.nx[j,::self.skip,::self.skip]
+      V=self.ny[j,::self.skip,::self.skip]
 
       self.im.set_UVC(U, V, C=np.arctan2(V,U))
       self.im3_q.set_UVC(U, V, C=np.arctan2(V,U))
@@ -238,5 +238,5 @@ class Figure():
 
       print("movie saved")
     
-myFig = Figure(video=True,snapshots=True)
+myFig = Figure(video=True, snapshots=True)
 del(myFig)
